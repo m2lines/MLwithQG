@@ -1,0 +1,10 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: notebooks/Running_High_Resolution_Simulations_With_pyqg.ipynb
+- file: notebooks/Applying_Filtering_and_Coarse-Graining_to_Generate_Low_Resolution_Datasets.ipynb
+- file: notebooks/Understanding_Fully_Convolutional_Neural_Networks.ipynb
+- file: notebooks/Running_Parameterized_FCNNs.ipynb

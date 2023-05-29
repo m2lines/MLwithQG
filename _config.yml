@@ -1,0 +1,10 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+title: Learning Parameterizations with Ross-22
+author: The M<sup>2</sup>LInES Community
+logo: newlogo.png
+
+# Turn off notebook execution on each build
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: 'off'
