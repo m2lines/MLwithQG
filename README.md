@@ -11,3 +11,5 @@ This project uses [Jupyter Book](https://jupyterbook.org/) to organize a collect
 ## Setting up the Environment
 
 ### Installing pyqg
+
+### Installing Python Dependencies
