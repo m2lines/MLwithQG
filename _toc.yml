@@ -8,3 +8,4 @@ chapters:
 - file: notebooks/Applying_Filtering_and_Coarse-Graining_to_Generate_Low_Resolution_Datasets.ipynb
 - file: notebooks/Understanding_Fully_Convolutional_Neural_Networks.ipynb
 - file: notebooks/Running_Parameterized_FCNNs.ipynb
+- file: bibliography.md
