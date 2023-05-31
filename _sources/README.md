@@ -1,4 +1,4 @@
-# Ross 2022 Machine Learning Parameterizations Demo
+# Ross 2022 Machine Learning Parameterizations
 Collection of tutorialized notebooks on Ross 2022 machine learning subgrid parametrizations 
 
 ## Structure and Organization of the Repo

@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction &#8212; Learning Parameterizations with Ross-22</title>
+    <title>References &#8212; Learning Parameterizations with Ross-22</title>
   
   
   
@@ -60,10 +60,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bibliography';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Running Simulations and Making Analyzations With pyqg" href="notebooks/Running_High_Resolution_Simulations_With_pyqg.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -129,7 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -148,8 +147,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Introduction
                 </a>
             </li>
@@ -213,7 +212,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/bibliography.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +292,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction</h1>
+    <h1>References</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -307,12 +306,14 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
-<p>We are able to virtually simulate the continuous processes of ocean and climate models in discrete and finite resolutions, however, limited in the fineness of these resolutions due to inherent barriers in computational resources and time. In an effort to predict the behavior of high-resolution simulations but at low-resolution settings to adjust for technological constraints, we ultimately end up facing issues with errors that surface from continuous discretizations in resolution, particularly in the loss of underlying forcings that occur on higher scales. Despite  this, subgrid parameterizations provide us with the means to resolve those higher-level effects that are lost on the finite grids of the ocean and climate models that we utilize. By employing machine learning techniques we can build improved low-resolution simulations to more fittingly exemplify the processes occurring in higher-resolution settings, bringing us closer to approximating the grand continuous system of the ocean and climate.</p>
-<p>The purpose of this book is to serve as a guiding source of documentation to explore and reproduce the results from the paper <em>Benchmarking of machine learning ocean subgrid parameterizations in an idealized model</em> [<a class="reference external" href="https://www.essoar.org/doi/10.1002/essoar.10511742.2">Ross22</a>] in an efficient and transparent broken-down series of formative, tutorial-based parts. We will open the way for readers to recreate these results using <a class="reference external" href="https://pyqg.readthedocs.io/en/latest/">pyqg</a>, an open-source Python framework for running quasi-geostrophic ocean simulations. We discuss running unique high-resolution simulations and working with existing and generated datasets. This extends to applying filters and coarse-graining techniques to generate distinct low-resolution datasets and retrieving preexisting datasets from the cloud. We then train various fully convolutional neural networks (FCNNs) on these low-resolution datasets to predict desired subgrid parameterizations and conclusively measure learning performance against each neural network strata based on the numerous metrics employed within the paper.</p>
-<p>This book was made as part of M<sup>2</sup>LInES for team members to be able to set up their own environments to replicate and further build upon the findings from the paper, more seamlessly and efficiently relate this work into other overlapping or related projects, and even better collaborate as peers with one another.</p>
-<div class="toctree-wrapper compound">
+  <div class="tex2jax_ignore mathjax_ignore section" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
+<div class="docutils container" id="id1">
+<dl class="citation">
+<dt class="label" id="id2"><span class="brackets">RLP+22</span></dt>
+<dd><p>Andrew Ross, Ziwei Li, Pavel Perezhogin, Carlos Fernandez-Granda, and Laure Zanna. Benchmarking of machine learning ocean subgrid parameterizations in an idealized model. <em>Journal of Advances in Modeling Earth Systems</em>, pages e2022MS003258, 2022. e2022MS003258 2022MS003258. URL: <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022MS003258">https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2022MS003258</a>, <a class="reference external" href="https://arxiv.org/abs/https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2022MS003258">arXiv:https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2022MS003258</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1029/2022MS003258">doi:https://doi.org/10.1029/2022MS003258</a>.</p>
+</dd>
+</dl>
 </div>
 </div>
 
@@ -347,15 +348,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="right-next"
-       href="notebooks/Running_High_Resolution_Simulations_With_pyqg.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Running Simulations and Making Analyzations With pyqg</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
