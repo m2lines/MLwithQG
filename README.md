@@ -32,7 +32,7 @@ There is an additional dependency that must be installed. We must import the fol
 To build the book locally, you should first create and set up your environment, as described above. Then run
 
 ```bash
-$ jupyter book build .
+$ jupyter-book build .
 ```
 
 When you run this command, the notebooks will be executed. The built html will be placed in `\_build/html`. To preview the book, run
