@@ -346,7 +346,7 @@ document.write(`
 <span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">train_on</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span>
         <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">,</span><span class="s1">&#39;u&#39;</span><span class="p">,</span><span class="s1">&#39;v&#39;</span><span class="p">],</span> 
-        <span class="n">targets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;q_subgrid_forcing&#39;</span><span class="p">],</span> <span class="c1"># See {INSERT SECTION REFERENCE} for valid target values of sugrid forcing and flux</span>
+        <span class="n">targets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;q_subgrid_forcing&#39;</span><span class="p">],</span> <span class="c1"># See https://m2lines.github.io/MLwithQG/notebooks/Applying_Filtering_and_Coarse-Graining_to_Generate_Low_Resolution_Datasets.html#subgrid-forcings for valid target values of sugrid forcing and flux</span>
         <span class="n">num_epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
         <span class="n">zero_mean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;circular&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span> <span class="c1"># Accepts values &#39;same&#39;, &#39;circuluar&#39;, or None</span>
