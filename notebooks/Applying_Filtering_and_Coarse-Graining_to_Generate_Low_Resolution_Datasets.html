@@ -162,6 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Applying Filtering and Coarse-Graining to Generate Low-Resolution Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Understanding_Fully_Convolutional_Neural_Networks.html">Understanding Fully Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Running_Parameterized_FCNNs.html">Running Parameterized FCNNs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 
     </div>
@@ -308,8 +309,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-preexisting-datasets">Utilizing Preexisting Datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-effects">Visualizing Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-preexisting-datasets">Utilizing Preexisting Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgrid-forcings">Subgrid Forcings</a></li>
 </ul>
             </nav>
         </div>
@@ -331,7 +333,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">pyqg</span>
-<span class="kn">import</span> <span class="nn">pyqg_parameterization_benchmarks.coarsening_ops</span> <span class="k">as</span> <span class="nn">coarsening</span> <span class="c1"># See https://github.com/m2lines/pyqg_parameterization_benchmarks#running-the-code for importing </span>
+<span class="kn">import</span> <span class="nn">pyqg_parameterization_benchmarks.coarsening_ops</span> <span class="k">as</span> <span class="nn">coarsening</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
@@ -1229,95 +1231,6 @@ Attributes: (12/23)
               0.00020106192982974677],
              dtype=&#x27;float64&#x27;, name=&#x27;k&#x27;))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-db733509-d010-440e-bde4-db8bcd61d87c' class='xr-section-summary-in' type='checkbox'  ><label for='section-db733509-d010-440e-bde4-db8bcd61d87c' class='xr-section-summary' >Attributes: <span>(23)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>pyqg:beta :</span></dt><dd>1.5e-11</dd><dt><span>pyqg:delta :</span></dt><dd>0.25</dd><dt><span>pyqg:del2 :</span></dt><dd>0.8</dd><dt><span>pyqg:dt :</span></dt><dd>3600.0</dd><dt><span>pyqg:filterfac :</span></dt><dd>23.6</dd><dt><span>pyqg:L :</span></dt><dd>1000000.0</dd><dt><span>pyqg:M :</span></dt><dd>4096</dd><dt><span>pyqg:nk :</span></dt><dd>33</dd><dt><span>pyqg:nl :</span></dt><dd>64</dd><dt><span>pyqg:ntd :</span></dt><dd>1</dd><dt><span>pyqg:nx :</span></dt><dd>64</dd><dt><span>pyqg:ny :</span></dt><dd>64</dd><dt><span>pyqg:nz :</span></dt><dd>2</dd><dt><span>pyqg:rd :</span></dt><dd>15000.0</dd><dt><span>pyqg:rek :</span></dt><dd>5.787e-07</dd><dt><span>pyqg:taveint :</span></dt><dd>86400.0</dd><dt><span>pyqg:tavestart :</span></dt><dd>315360000.0</dd><dt><span>pyqg:tc :</span></dt><dd>0</dd><dt><span>pyqg:tmax :</span></dt><dd>1576800000.0</dd><dt><span>pyqg:twrite :</span></dt><dd>1000.0</dd><dt><span>pyqg:W :</span></dt><dd>1000000.0</dd><dt><span>title :</span></dt><dd>pyqg: Python Quasigeostrophic Model</dd><dt><span>reference :</span></dt><dd>https://pyqg.readthedocs.io/en/latest/index.html</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<div class="section" id="utilizing-preexisting-datasets">
-<h2>Utilizing Preexisting Datasets<a class="headerlink" href="#utilizing-preexisting-datasets" title="Permalink to this heading">#</a></h2>
-<p>As promised, we will discuss the structure of the remaining sub-directories housing the datasets.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eddy</span><span class="o">/</span>
-    <span class="n">high_res</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">low_res</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">forcing1</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">forcing2</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">forcing3</span><span class="o">.</span><span class="n">zarr</span>
-<span class="n">jet</span><span class="o">/</span>
-    <span class="n">high_res</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">low_res</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">forcing1</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">forcing2</span><span class="o">.</span><span class="n">zarr</span>
-    <span class="n">forcing3</span><span class="o">.</span><span class="n">zarr</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">low_res.zarr</span></code> contains snapshots and diagnostics for low resolution eddy- and jet-configured models (where <code class="docutils literal notranslate"><span class="pre">nx=64</span></code>). We can run low resolution simulations in the same manner in which we’ve previously ran our high resolution simulations with the modification of changing the argument value for the <code class="docutils literal notranslate"><span class="pre">nx</span></code> parameter defined in the <code class="docutils literal notranslate"><span class="pre">pyqg.QGModel</span></code> class when initializing our model.</p>
-<p><code class="docutils literal notranslate"><span class="pre">forcing{1,2,3}.zarr</span></code> contain high resolution snapshots that have been filtered and coarsened down to low resolution, along with relevant information on subgrid forcing variables. There are three of these datasets due to the fact three different filtering and coarse-graining operations on high resolution simulations were explored in the paper. Each dataset corresponds respectively to the three filtering and coarse-graining operators we initialized.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a small subset of the subgrid forcing data</span>
-<span class="n">eddy_forcing1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="s1">&#39;gs://leap-persistent/pbluc/eddy/forcing1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span> <span class="c1"># Computed with Operator 1</span>
-<span class="n">eddy_forcing2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="s1">&#39;gs://leap-persistent/pbluc/eddy/forcing2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span> <span class="c1"># Computed with Operator 2</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Each of the forcing datasets, include additional variables that detail the underlying deviations between the high resolution model and its coarsened complement (where <span class="math notranslate nohighlight">\(\overline{(\,)}\)</span> denotes the coarse-graining operator):</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">q_subgrid_forcing</span></code>: <span class="math notranslate nohighlight">\(S_q \equiv \overline{(\mathbf{u} \cdot \nabla)q} - (\overline{\mathbf{u}} \cdot \overline{\nabla})\overline{q}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">u_subgrid_forcing</span></code>: <span class="math notranslate nohighlight">\(S_u \equiv \overline{(\mathbf{u} \cdot \nabla)u} - (\overline{\mathbf{u}} \cdot \overline{\nabla})\overline{u}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">v_subgrid_forcing</span></code>: <span class="math notranslate nohighlight">\(S_v \equiv \overline{(\mathbf{u} \cdot \nabla)v} - (\overline{\mathbf{u}} \cdot \overline{\nabla})\overline{v}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uq_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{uq} \equiv \overline{uq} - \bar{u}\bar{q}\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vq_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{vq} \equiv \overline{vq} - \bar{v}\bar{q}\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uu_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{uu} \equiv \overline{u^2} - \bar{u}^2\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">vv_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{vv} \equiv \overline{v^2} - \bar{v}^2\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">uv_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{uv} \equiv \overline{uv} - \bar{u}\bar{v}\)</span>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dqdt_bar</span></code>: PV tendency from the high-resolution model, filtered and coarsened to low resolution</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dqbar_dt</span></code>: PV tendency from the low-resolution model, initialized at <span class="math notranslate nohighlight">\(\overline{q}\)</span>.</p></li>
-</ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Subgrid forcing with filtering and coarse-graining schemes&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">);</span> <span class="n">eddy_forcing1</span><span class="o">.</span><span class="n">q_subgrid_forcing</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">cbar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper PV Forcing [$s^{-2}$]&quot;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;eddy/forcing1&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">);</span> <span class="n">eddy_forcing2</span><span class="o">.</span><span class="n">q_subgrid_forcing</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-    <span class="n">cbar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper PV Forcing [$s^{-2}$]&quot;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;eddy/forcing2&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/f4de5196cd390b8fd8e40bae35eb6b5b68249d630c57024aa3b611fa863fa9e8.png" src="../_images/f4de5196cd390b8fd8e40bae35eb6b5b68249d630c57024aa3b611fa863fa9e8.png" />
-</div>
-</div>
-<p>We canconstruct our own forcing datasets with these additional variables included as follows:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">append_subgrid_variables</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
-    <span class="n">subgrid_forcing_terms</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;q_subgrid_forcing&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;u_subgrid_forcing&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;v_subgrid_forcing&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">)]</span>
-    <span class="n">subgrid_flux_terms</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;uq_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;vq_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;uu_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;uv_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;vv_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
-    
-    <span class="n">snapshot</span><span class="p">[</span><span class="s1">&#39;q_forcing_total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">q_forcing_total</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">subgrid_forcing_terms</span><span class="p">:</span>
-        <span class="n">snapshot</span><span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">subgrid_forcing</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">subgrid_flux_terms</span><span class="p">:</span>
-        <span class="n">snapshot</span><span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">subgrid_fluxes</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="n">term</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
-    <span class="k">return</span> <span class="n">snapshot</span>
-
-<span class="n">hires_model</span> <span class="o">=</span> <span class="n">pyqg</span><span class="o">.</span><span class="n">QGModel</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">3600.0</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">311040000.0</span><span class="p">,</span> <span class="n">tavestart</span><span class="o">=</span><span class="mf">155520000.0</span><span class="p">)</span>
-<span class="n">op1</span> <span class="o">=</span> <span class="n">coarsening</span><span class="o">.</span><span class="n">Operator1</span><span class="p">(</span><span class="n">hires_model</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-<span class="n">initial_snapshot</span> <span class="o">=</span> <span class="n">op1</span><span class="o">.</span><span class="n">m2</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>
-
-<span class="n">snapshots</span> <span class="o">=</span> <span class="p">[</span><span class="n">append_subgrid_variables</span><span class="p">(</span><span class="n">initial_snapshot</span><span class="p">,</span> <span class="n">op1</span><span class="p">)]</span>
-
-<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">hires_model</span><span class="o">.</span><span class="n">run_with_snapshots</span><span class="p">(</span><span class="n">tsnapint</span><span class="o">=</span><span class="mi">1000</span><span class="o">*</span><span class="n">hires_model</span><span class="o">.</span><span class="n">dt</span><span class="p">):</span>
-    <span class="n">op1</span> <span class="o">=</span> <span class="n">coarsening</span><span class="o">.</span><span class="n">Operator1</span><span class="p">(</span><span class="n">hires_model</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
-    <span class="n">snapshot</span> <span class="o">=</span> <span class="n">op1</span><span class="o">.</span><span class="n">m2</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>
-    <span class="n">snapshots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">append_subgrid_variables</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">op1</span><span class="p">))</span>
-
-<span class="n">eddy_forcing1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">snapshots</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="visualizing-effects">
 <h2>Visualizing Effects<a class="headerlink" href="#visualizing-effects" title="Permalink to this heading">#</a></h2>
 <p>We can visualize the effects on various state variables and resulting subgrid forcing terms from applying the three different methods of filtering and coarse-graining respectively to high resolution eddy configurations.</p>
@@ -1381,6 +1294,98 @@ Attributes: (12/23)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/2f5ddef94d942615db4739ee78a9595792cce46aa511effc0bbad548cc1e5dc9.png" src="../_images/2f5ddef94d942615db4739ee78a9595792cce46aa511effc0bbad548cc1e5dc9.png" />
+</div>
+</div>
+</div>
+<div class="section" id="utilizing-preexisting-datasets">
+<h2>Utilizing Preexisting Datasets<a class="headerlink" href="#utilizing-preexisting-datasets" title="Permalink to this heading">#</a></h2>
+<p>As promised, we will discuss the structure of the remaining sub-directories housing the datasets.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eddy</span><span class="o">/</span>
+    <span class="n">high_res</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">low_res</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">forcing1</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">forcing2</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">forcing3</span><span class="o">.</span><span class="n">zarr</span>
+<span class="n">jet</span><span class="o">/</span>
+    <span class="n">high_res</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">low_res</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">forcing1</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">forcing2</span><span class="o">.</span><span class="n">zarr</span>
+    <span class="n">forcing3</span><span class="o">.</span><span class="n">zarr</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">low_res.zarr</span></code> contains snapshots and diagnostics for low resolution eddy- and jet-configured models (where <code class="docutils literal notranslate"><span class="pre">nx=64</span></code>). We can run low resolution simulations in the same manner in which we’ve previously ran our high resolution simulations with the modification of changing the argument value for the <code class="docutils literal notranslate"><span class="pre">nx</span></code> parameter defined in the <code class="docutils literal notranslate"><span class="pre">pyqg.QGModel</span></code> class when initializing our model.</p>
+<p><code class="docutils literal notranslate"><span class="pre">forcing{1,2,3}.zarr</span></code> contain high resolution snapshots that have been filtered and coarsened down to low resolution, along with relevant information on subgrid forcing variables. There are three of these datasets due to the fact three different filtering and coarse-graining operations on high resolution simulations were explored in the paper. Each dataset corresponds respectively to the three filtering and coarse-graining operators we initialized.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load a small subset of the subgrid forcing data</span>
+<span class="n">eddy_forcing1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="s1">&#39;gs://leap-persistent/pbluc/eddy/forcing1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span> <span class="c1"># Computed with Operator 1</span>
+<span class="n">eddy_forcing2</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_zarr</span><span class="p">(</span><span class="s1">&#39;gs://leap-persistent/pbluc/eddy/forcing2&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">run</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">load</span><span class="p">()</span> <span class="c1"># Computed with Operator 2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="subgrid-forcings">
+<h2>Subgrid Forcings<a class="headerlink" href="#subgrid-forcings" title="Permalink to this heading">#</a></h2>
+<p>Each of the forcing datasets, include additional variables that detail the underlying deviations between the high resolution model and its coarsened complement (where <span class="math notranslate nohighlight">\(\overline{(\,)}\)</span> denotes the coarse-graining operator):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">q_subgrid_forcing</span></code>: <span class="math notranslate nohighlight">\(S_q \equiv \overline{(\mathbf{u} \cdot \nabla)q} - (\overline{\mathbf{u}} \cdot \overline{\nabla})\overline{q}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u_subgrid_forcing</span></code>: <span class="math notranslate nohighlight">\(S_u \equiv \overline{(\mathbf{u} \cdot \nabla)u} - (\overline{\mathbf{u}} \cdot \overline{\nabla})\overline{u}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">v_subgrid_forcing</span></code>: <span class="math notranslate nohighlight">\(S_v \equiv \overline{(\mathbf{u} \cdot \nabla)v} - (\overline{\mathbf{u}} \cdot \overline{\nabla})\overline{v}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uq_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{uq} \equiv \overline{uq} - \bar{u}\bar{q}\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vq_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{vq} \equiv \overline{vq} - \bar{v}\bar{q}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uu_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{uu} \equiv \overline{u^2} - \bar{u}^2\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vv_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{vv} \equiv \overline{v^2} - \bar{v}^2\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uv_subgrid_flux</span></code>: <span class="math notranslate nohighlight">\(\phi_{uv} \equiv \overline{uv} - \bar{u}\bar{v}\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dqdt_bar</span></code>: PV tendency from the high-resolution model, filtered and coarsened to low resolution</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dqbar_dt</span></code>: PV tendency from the low-resolution model, initialized at <span class="math notranslate nohighlight">\(\overline{q}\)</span>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Subgrid forcing with filtering and coarse-graining schemes&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">);</span> <span class="n">eddy_forcing1</span><span class="o">.</span><span class="n">q_subgrid_forcing</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">cbar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper PV Forcing [$s^{-2}$]&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;eddy/forcing1&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">);</span> <span class="n">eddy_forcing2</span><span class="o">.</span><span class="n">q_subgrid_forcing</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">cbar_kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Upper PV Forcing [$s^{-2}$]&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;eddy/forcing2&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f4de5196cd390b8fd8e40bae35eb6b5b68249d630c57024aa3b611fa863fa9e8.png" src="../_images/f4de5196cd390b8fd8e40bae35eb6b5b68249d630c57024aa3b611fa863fa9e8.png" />
+</div>
+</div>
+<p>We can construct our own forcing datasets with these additional variables included as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">append_subgrid_variables</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+    <span class="n">subgrid_forcing_terms</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;q_subgrid_forcing&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;u_subgrid_forcing&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;v_subgrid_forcing&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">)]</span>
+    <span class="n">subgrid_flux_terms</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;uq_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;vq_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;uu_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;u&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;uv_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;vv_subgrid_flux&#39;</span><span class="p">,</span> <span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+    
+    <span class="n">snapshot</span><span class="p">[</span><span class="s1">&#39;q_forcing_total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">q_forcing_total</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">subgrid_forcing_terms</span><span class="p">:</span>
+        <span class="n">snapshot</span><span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">subgrid_forcing</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">term</span> <span class="ow">in</span> <span class="n">subgrid_flux_terms</span><span class="p">:</span>
+        <span class="n">snapshot</span><span class="p">[</span><span class="n">term</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">([</span><span class="s1">&#39;lev&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">op</span><span class="o">.</span><span class="n">subgrid_fluxes</span><span class="p">(</span><span class="n">term</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="n">term</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+    <span class="k">return</span> <span class="n">snapshot</span>
+
+<span class="n">hires_model</span> <span class="o">=</span> <span class="n">pyqg</span><span class="o">.</span><span class="n">QGModel</span><span class="p">(</span><span class="n">nx</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">3600.0</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="mf">311040000.0</span><span class="p">,</span> <span class="n">tavestart</span><span class="o">=</span><span class="mf">155520000.0</span><span class="p">)</span>
+<span class="n">op1</span> <span class="o">=</span> <span class="n">coarsening</span><span class="o">.</span><span class="n">Operator1</span><span class="p">(</span><span class="n">hires_model</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="n">initial_snapshot</span> <span class="o">=</span> <span class="n">op1</span><span class="o">.</span><span class="n">m2</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>
+
+<span class="n">snapshots</span> <span class="o">=</span> <span class="p">[</span><span class="n">append_subgrid_variables</span><span class="p">(</span><span class="n">initial_snapshot</span><span class="p">,</span> <span class="n">op1</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">hires_model</span><span class="o">.</span><span class="n">run_with_snapshots</span><span class="p">(</span><span class="n">tsnapint</span><span class="o">=</span><span class="mi">1000</span><span class="o">*</span><span class="n">hires_model</span><span class="o">.</span><span class="n">dt</span><span class="p">):</span>
+    <span class="n">op1</span> <span class="o">=</span> <span class="n">coarsening</span><span class="o">.</span><span class="n">Operator1</span><span class="p">(</span><span class="n">hires_model</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+    <span class="n">snapshot</span> <span class="o">=</span> <span class="n">op1</span><span class="o">.</span><span class="n">m2</span><span class="o">.</span><span class="n">to_dataset</span><span class="p">()</span>
+    <span class="n">snapshots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">append_subgrid_variables</span><span class="p">(</span><span class="n">snapshot</span><span class="p">,</span> <span class="n">op1</span><span class="p">))</span>
+
+<span class="n">eddy_forcing1</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">snapshots</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -1453,8 +1458,9 @@ Attributes: (12/23)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-preexisting-datasets">Utilizing Preexisting Datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-effects">Visualizing Effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utilizing-preexisting-datasets">Utilizing Preexisting Datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subgrid-forcings">Subgrid Forcings</a></li>
 </ul>
   </nav></div>
 

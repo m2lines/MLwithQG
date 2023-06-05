@@ -158,6 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Applying_Filtering_and_Coarse-Graining_to_Generate_Low_Resolution_Datasets.html">Applying Filtering and Coarse-Graining to Generate Low-Resolution Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Understanding_Fully_Convolutional_Neural_Networks.html">Understanding Fully Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Running_Parameterized_FCNNs.html">Running Parameterized FCNNs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">References</a></li>
 </ul>
 
     </div>
@@ -310,6 +311,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python-dependencies">Installing Python Dependencies</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-book">Building the Book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -323,24 +326,50 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="ross-2022-machine-learning-parameterizations">
 <h1>Ross 2022 Machine Learning Parameterizations<a class="headerlink" href="#ross-2022-machine-learning-parameterizations" title="Permalink to this heading">#</a></h1>
-<p>Collection of tutorialized notebooks on Ross 2022 machine learning subgrid parametrizations</p>
+<p>An online hosted collection of tutorial notebooks on Ross 2022 machine learning subgrid parametrizations.</p>
 <div class="section" id="structure-and-organization-of-the-repo">
 <h2>Structure and Organization of the Repo<a class="headerlink" href="#structure-and-organization-of-the-repo" title="Permalink to this heading">#</a></h2>
 <p>This project uses <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a> to organize a collection of Jupyter Notebooks into a website.</p>
 <ul class="simple">
-<li><p>The notebooks all live in the <a class="reference external" href="https://github.com/ocean-transport/ross22_demo/tree/main/notebooks">notebooks</a> directory. Note that the outputs of execution within the notebooks are saved and are thus not executed as part of the build process.</p></li>
-<li><p>The table of contents is located in <a class="reference external" href="https://github.com/ocean-transport/ross22_demo/blob/main/_toc.yml">_toc.yml</a>.</p></li>
-<li><p>The book configuration is in <a class="reference external" href="https://github.com/ocean-transport/ross22_demo/blob/main/_config.yml">_config.yml</a>.</p></li>
+<li><p>The notebooks all live in the <a class="reference external" href="https://github.com/m2lines/MLwithQG/tree/main/notebooks">notebooks</a> directory. Note that the outputs of execution within the notebooks are saved and are thus not executed as part of the build process.</p></li>
+<li><p>The table of contents is located in <a class="reference external" href="https://github.com/m2lines/MLwithQG/blob/main/_toc.yml">_toc.yml</a>.</p></li>
+<li><p>The book configuration is in <a class="reference external" href="https://github.com/m2lines/MLwithQG/blob/main/_config.yml">_config.yml</a>.</p></li>
+<li><p>The references are in <a class="reference external" href="https://github.com/m2lines/MLwithQG/blob/main/references.bib">_references.bib</a>.</p></li>
 </ul>
 </div>
 <div class="section" id="setting-up-the-environment">
 <h2>Setting up the Environment<a class="headerlink" href="#setting-up-the-environment" title="Permalink to this heading">#</a></h2>
 <div class="section" id="installing-pyqg">
 <h3>Installing pyqg<a class="headerlink" href="#installing-pyqg" title="Permalink to this heading">#</a></h3>
+<p>The quickest and easiest way to install pyqg is with conda. Alternative installation instructions can be found <a class="reference external" href="https://pyqg.readthedocs.io/en/latest/installation.html#alternatives">here</a>. To install pyqg with conda, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>pyqg
+</pre></div>
+</div>
 </div>
 <div class="section" id="installing-python-dependencies">
 <h3>Installing Python Dependencies<a class="headerlink" href="#installing-python-dependencies" title="Permalink to this heading">#</a></h3>
+<p>The python packages required to run and build the notebooks are listed in the <a class="reference external" href="https://github.com/m2lines/MLwithQG/blob/main/requirements.txt">requirements.txt</a> file. To install all dependencies, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</pre></div>
 </div>
+<p>There is an additional dependency that must be installed. We must import the following <a class="reference external" href="https://github.com/m2lines/pyqg_parameterization_benchmarks">repository</a> as a Python package. This repository contains code that abstracts parameterizations using fully convolutional neural networks (FCNN). We can do this by following these <a class="reference external" href="https://github.com/m2lines/pyqg_parameterization_benchmarks">steps</a>.</p>
+</div>
+</div>
+<div class="section" id="building-the-book">
+<h2>Building the Book<a class="headerlink" href="#building-the-book" title="Permalink to this heading">#</a></h2>
+<p>To build the book locally, you should first create and set up your environment, as described above. Then run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>jupyter-book<span class="w"> </span>build<span class="w"> </span>.
+</pre></div>
+</div>
+<p>When you run this command, the notebooks will be executed. The built html will be placed in <code class="docutils literal notranslate"><span class="pre">\_build/html</span></code>. To preview the book, run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>_build/html
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>http.server
+</pre></div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p>Ross, A., Li, Z., Perezhogin, P., Fernandez-Granda, C., &amp; Zanna, L. (2023). Benchmarking of Machine Learning Ocean Subgrid Parameterizations in an Idealized Model. Journal of Advances in Modeling Earth Systems, 15(1), e2022MS003258. <a class="reference external" href="https://doi.org/10.1029/2022MS003258">https://doi.org/10.1029/2022MS003258</a></p>
 </div>
 </div>
 
@@ -399,6 +428,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-python-dependencies">Installing Python Dependencies</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-the-book">Building the Book</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 

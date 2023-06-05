@@ -162,6 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Applying_Filtering_and_Coarse-Graining_to_Generate_Low_Resolution_Datasets.html">Applying Filtering and Coarse-Graining to Generate Low-Resolution Datasets</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Understanding_Fully_Convolutional_Neural_Networks.html">Understanding Fully Convolutional Neural Networks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Running_Parameterized_FCNNs.html">Running Parameterized FCNNs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bibliography.html">References</a></li>
 </ul>
 
     </div>
@@ -313,8 +314,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-variables">State Variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostic-variables">Diagnostic Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectra">Power Spectra</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-budget-should-sum-to-0">Energy budget (should sum to 0)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enstrophy-budget-should-sum-to-0">Enstrophy budget (should sum to 0):</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-budget">Energy budget</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enstrophy-budget">Enstrophy budget</a></li>
 </ul>
 </li>
 </ul>
@@ -332,8 +333,7 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="running-simulations-and-making-analyzations-with-pyqg">
 <h1>Running Simulations and Making Analyzations With pyqg<a class="headerlink" href="#running-simulations-and-making-analyzations-with-pyqg" title="Permalink to this heading">#</a></h1>
-<p>Using <code class="docutils literal notranslate"><span class="pre">pyqg</span></code>, we can run high-resolution simulations from which we will generate our low-resolution datasets, our training data for the subgrid parameterizations we are trying to machine learn.</p>
-<p>To start, import the following modules/packages:</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">pyqg</span></code>, we can run unique high-resolution simulations of our own. To start, import the following modules/packages:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -341,7 +341,7 @@ document.write(`
 <span class="kn">import</span> <span class="nn">fsspec</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pyqg</span> <span class="c1"># Before importing, install by running the following: conda install -c conda-forge pyqg</span>
+<span class="kn">import</span> <span class="nn">pyqg</span> 
 <span class="kn">import</span> <span class="nn">pyqg.diagnostic_tools</span> <span class="k">as</span> <span class="nn">tools</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
@@ -350,7 +350,7 @@ document.write(`
 </div>
 </div>
 </div>
-<p>We will use the <code class="docutils literal notranslate"><span class="pre">pyqg.QGModel</span></code> class to generate the two layer quasigeostrophic models we will be running simulations on. There is a base class from which all other models inherit, <code class="docutils literal notranslate"><span class="pre">pyqg.Model</span></code>, and its initialization parameters can be applied to all of the other model types. Although there are numerous parameters that can be set and played around with, the following parameters from the base case are of main focus to reproducing the high resolution simulations from the paper.</p>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">pyqg.QGModel</span></code> class to generate the two layer quasigeostrophic models we will be running simulations on. There is a base class from which all other models inherit, <code class="docutils literal notranslate"><span class="pre">pyqg.Model</span></code>, and its initialization parameters can be applied to all of the other model types. Although there are numerous parameters that can be set and played around with, the following parameters from the base class are of main focus to reproducing the high resolution simulations from the paper.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nx</span></code>: number of real space grid points in the <span class="math notranslate nohighlight">\(x\)</span> direction (affects the resolution of the simulations)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dt</span></code>: numerical timestep</p></li>
@@ -393,7 +393,7 @@ INFO:  Logger initialized
 </div>
 </div>
 </div>
-<p>To run a simulation with snapshot variables saved every 1000 hours, we use <code class="docutils literal notranslate"><span class="pre">run_with_snapshots()</span></code> and concatenate each of the resulting snapshots for each configuration setting into cumulative <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> objects.</p>
+<p>To run a simulation with snapshot variables saved periodically, we use <code class="docutils literal notranslate"><span class="pre">generate_snapshots()</span></code> and concatenate each of the resulting snapshots for each configuration setting into cumulative <code class="docutils literal notranslate"><span class="pre">xarray.Dataset</span></code> objects. Below, we are saving snapshots every 1000 hours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_snapshots</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
@@ -1464,7 +1464,7 @@ Attributes: (12/24)
 </div>
 <div class="section" id="retrieving-preexisting-datasets">
 <h2>Retrieving Preexisting Datasets<a class="headerlink" href="#retrieving-preexisting-datasets" title="Permalink to this heading">#</a></h2>
-<p>Alternatively, using preexisting datasets, we can replicate the procedures followed within the paper using the same high resolution datasets that were generated in the study. We can retrieve the exact datasets stored on a persistent storage bucket within Jupyter Hub. The datasets are organized as <code class="docutils literal notranslate"><span class="pre">zarr</span></code> files in the following top-down fashion:</p>
+<p>Alternatively, with preexisting datasets, we can replicate the procedures followed within the paper using the same high resolution datasets that were generated in the study. We can retrieve the exact datasets stored on a persistent storage bucket within Jupyter Hub. The datasets are organized as <code class="docutils literal notranslate"><span class="pre">zarr</span></code> files in the following top-down fashion:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">eddy</span><span class="o">/</span>
     <span class="n">high_res</span><span class="o">.</span><span class="n">zarr</span>
     <span class="n">low_res</span><span class="o">.</span><span class="n">zarr</span>
@@ -1576,8 +1576,8 @@ Attributes: (12/24)
 <li><p><code class="docutils literal notranslate"><span class="pre">Ensspec</span></code>: how much enstrophy is stored at each <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> lengthscale</p></li>
 </ul>
 </div>
-<div class="section" id="energy-budget-should-sum-to-0">
-<h4>Energy budget (should sum to 0)<a class="headerlink" href="#energy-budget-should-sum-to-0" title="Permalink to this heading">#</a></h4>
+<div class="section" id="energy-budget">
+<h4>Energy budget<a class="headerlink" href="#energy-budget" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">KEflux</span></code>: how kinetic energy is being transferred across lengthscales</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">APEflux</span></code>: how available potential energy is being transferred across lengthscales</p></li>
@@ -1586,8 +1586,8 @@ Attributes: (12/24)
 <li><p><code class="docutils literal notranslate"><span class="pre">Dissspec</span></code>: how much energy is being lost due to numerical dissipation at each lengthscale</p></li>
 </ul>
 </div>
-<div class="section" id="enstrophy-budget-should-sum-to-0">
-<h4>Enstrophy budget (should sum to 0):<a class="headerlink" href="#enstrophy-budget-should-sum-to-0" title="Permalink to this heading">#</a></h4>
+<div class="section" id="enstrophy-budget">
+<h4>Enstrophy budget<a class="headerlink" href="#enstrophy-budget" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ENSflux</span></code>: how enstrophy is being transferred across lengthscales</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ENSgenspec</span></code>: how much new enstrophy is being generated</p></li>
@@ -1760,8 +1760,8 @@ Attributes: (12/24)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#state-variables">State Variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diagnostic-variables">Diagnostic Variables</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#power-spectra">Power Spectra</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-budget-should-sum-to-0">Energy budget (should sum to 0)</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enstrophy-budget-should-sum-to-0">Enstrophy budget (should sum to 0):</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#energy-budget">Energy budget</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#enstrophy-budget">Enstrophy budget</a></li>
 </ul>
 </li>
 </ul>
