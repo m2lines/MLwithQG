@@ -1,0 +1,7 @@
+numpy
+xarray
+fsspec
+matplotlib
+seaborn
+json
+jupyter-book
